@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zilith's Cybersecurity Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: 'rgb(29, 78, 216)',
+              secondary: 'rgb(255, 201, 60)',
+              background: 'rgb(243, 244, 246)',
+              darkBackground: 'rgb(17, 24, 39)',
+              darkCard: 'rgb(31, 41, 55)',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s;
+      }
+      .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .dark .tool-card {
+        background-color: rgb(31, 41, 55);
+        color: rgb(209, 213, 219);
+      }
+      .dark .tool-card:hover {
+        background-color: rgb(55, 65, 81);
+      }
+      .terminal-mockup {
+        background-color: #1a202c;
+        color: #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        white-space: pre-wrap;
+        overflow-x: auto;
+        font-family: monospace;
+      }
+      .os-tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+      .animated-hacker-text {
+        color: #00ffc8; /* Neon green */
+        animation: glitch 1.5s infinite;
+        text-shadow: 0 0 5px #00ffc8, 0 0 10px #00ffc8;
+      }
+
+      @keyframes glitch {
+        0% { text-shadow: 0 0 5px #00ffc8, 0 0 10px #00ffc8; }
+        20% { text-shadow: 2px 2px 0px #ff0077, -2px -2px 0px #00ffc8; }
+        40% { text-shadow: -2px 2px 0px #ff0077, 2px -2px 0px #00ffc8; }
+        60% { text-shadow: 2px -2px 0px #ff0077, -2px 2px 0px #00ffc8; }
+        80% { text-shadow: 0 0 5px #00ffc8, 0 0 10px #00ffc8; }
+        100% { text-shadow: 0 0 5px #00ffc8, 0 0 10px #00ffc8; }
+      }
+    </style>
+</head>
+
+<body class="bg-background dark:bg-darkBackground text-gray-900 dark:text-gray-100 min-h-screen p-4">
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold mb-4 animated-hacker-text">CyberOps by Zilith</h1>
+        </header>
+
+        <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+            <div class="flex-grow">
+                <input type="text" id="targetInput" placeholder="Enter an IP address or domain (e.g., google.com)" class="w-full px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-darkCard focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-secondary text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+            </div>
+            <button id="themeToggle" class="px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors duration-300 whitespace-nowrap">
+                Toggle Dark Mode
+            </button>
+        </div>
+
+        <main>
+            <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
+                <h2 class="text-xl font-bold mb-4">Network Connectivity & Host Info</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Windows Tools -->
+                    <button id="ipconfigBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">ipconfig <span class="os-tag">Win</span></button>
+                    <button id="tracertBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">tracert <span class="os-tag">Win</span></button>
+                    <button id="routePrintBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">route print <span class="os-tag">Win</span></button>
+                    <button id="arpBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">arp -a <span class="os-tag">Win</span></button>
+                    <button id="netstatAnoBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">netstat -ano <span class="os-tag">Win</span></button>
+                    
+                    <!-- Universal/Linux/Mac Tools -->
+                    <button id="pingBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">ping <span class="os-tag">All</span></button>
+                    <button id="hostnameBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">hostname <span class="os-tag">All</span></button>
+                    <button id="ifconfigBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">ifconfig <span class="os-tag">L/M</span></button>
+                    <button id="tracerouteBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">traceroute <span class="os-tag">L/M</span></button>
+                    <button id="ssBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">ss -tunlp <span class="os-tag">L</span></button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
+                <h2 class="text-xl font-bold mb-4">Domain & DNS Resolution</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <button id="nslookupBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">nslookup <span class="os-tag">All</span></button>
+                    <button id="whoisBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">whois <span class="os-tag">All</span></button>
+                    <button id="digBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">dig <span class="os-tag">L/M</span></button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
+                <h2 class="text-xl font-bold mb-4">Network Scanning & System Info</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <button id="nmapSVSBtn" class="px-4 py-2 rounded-full bg-purple-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-purple-700">nmap -sV -p 80 <span class="os-tag">L/M</span></button>
+                    <button id="nmapScanBtn" class="px-4 py-2 rounded-full bg-purple-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-purple-700">nmap -p 22,80,443 <span class="os-tag">L/M</span></button>
+                    <button id="systeminfoBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">systeminfo <span class="os-tag">Win</span></button>
+                    <button id="tasklistBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">tasklist <span class="os-tag">Win</span></button>
+                    <button id="psBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">ps -aux <span class="os-tag">L/M</span></button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
+                <h2 class="text-xl font-bold mb-4">File & Process Analysis</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <button id="tcpdumpBtn" class="px-4 py-2 rounded-full bg-green-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-green-700">tcpdump <span class="os-tag">L/M</span></button>
+                    <button id="certutilBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">certutil -hashfile <span class="os-tag">Win</span></button>
+                    <button id="whereBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">where <span class="os-tag">Win</span></button>
+                    <button id="findBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">find <span class="os-tag">L/M</span></button>
+                </div>
+            </div>
+
+            <!-- Command Output -->
+            <div class="tool-card bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold mb-2 flex justify-between items-center">
+                    Command Output
+                    <button id="clearBtn" class="px-4 py-2 rounded-full bg-red-500 text-white text-sm font-bold transition-transform transform hover:scale-105 hover:bg-red-700">Clear</button>
+                </h2>
+                <div id="output" class="terminal-mockup">
+                    <span class="text-green-400">C:\Users\User></span> Awaiting command...
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500 dark:text-gray-400">
+            <p>This resource is for educational purposes only. Always ensure you have explicit permission before performing network analysis on systems you do not own.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const targetInput = document.getElementById('targetInput');
+        const outputDiv = document.getElementById('output');
+        
+        // Command Buttons
+        const ipconfigBtn = document.getElementById('ipconfigBtn');
+        const pingBtn = document.getElementById('pingBtn');
+        const tracertBtn = document.getElementById('tracertBtn');
+        const routePrintBtn = document.getElementById('routePrintBtn');
+        const arpBtn = document.getElementById('arpBtn');
+        const netstatAnoBtn = document.getElementById('netstatAnoBtn');
+        const ifconfigBtn = document.getElementById('ifconfigBtn');
+        const tracerouteBtn = document.getElementById('tracerouteBtn');
+        const ssBtn = document.getElementById('ssBtn');
+        const hostnameBtn = document.getElementById('hostnameBtn');
+        const nslookupBtn = document.getElementById('nslookupBtn');
+        const whoisBtn = document.getElementById('whoisBtn');
+        const digBtn = document.getElementById('digBtn');
+        const nmapSVSBtn = document.getElementById('nmapSVSBtn');
+        const nmapScanBtn = document.getElementById('nmapScanBtn');
+        const systeminfoBtn = document.getElementById('systeminfoBtn');
+        const tasklistBtn = document.getElementById('tasklistBtn');
+        const psBtn = document.getElementById('psBtn');
+        const tcpdumpBtn = document.getElementById('tcpdumpBtn');
+        const certutilBtn = document.getElementById('certutilBtn');
+        const whereBtn = document.getElementById('whereBtn');
+        const findBtn = document.getElementById('findBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // Dark Mode Toggle
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            html.classList.add('dark');
+        }
+
+        // --- Command Simulation Logic ---
+
+        const simulateCommand = (command, target) => {
+            let output = '';
+            const userPrompt = `<span class="text-green-400">C:\\Users\\User></span> ${command} ${target || ''}\n\n`;
+
+            switch (command) {
+                case 'ipconfig':
+                    output = `${userPrompt}Windows IP Configuration\n\nEthernet adapter Ethernet:\n   Connection-specific DNS Suffix  . :<br>   IPv6 Address. . . . . . . . . . . : 2001:db8:85a3::8a2e:370:7334<br>   IPv4 Address. . . . . . . . . . . : 192.168.1.100<br>   Subnet Mask . . . . . . . . . . . : 255.255.255.0<br>   Default Gateway . . . . . . . . . : 192.168.1.1<br><br><span class="text-yellow-400">NOTE: This is simulated output. Actual 'ipconfig' command provides local machine details.</span>`;
+                    break;
+                case 'ping':
+                    if (!target) {
+                        output = `${userPrompt}Ping request could not find host. Please check the name and try again.`;
+                    } else {
+                        output = `${userPrompt}Pinging ${target} [142.250.72.78] with 32 bytes of data:\nReply from 142.250.72.78: bytes=32 time=20ms TTL=117\nReply from 142.250.72.78: bytes=32 time=21ms TTL=117\nReply from 142.250.72.78: bytes=32 time=20ms TTL=117\nReply from 142.250.72.78: bytes=32 time=22ms TTL=117\n\nPing statistics for 142.250.72.78:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 20ms, Maximum = 22ms, Average = 21ms`;
+                    }
+                    break;
+                case 'tracert':
+                    if (!target) {
+                        output = `${userPrompt}Unable to resolve target system name.`;
+                    } else {
+                        output = `${userPrompt}Tracing route to ${target} [142.250.72.78]\nover a maximum of 30 hops:\n\n 1    <1 ms    <1 ms    <1 ms  192.168.1.1\n 2     * * * Request timed out.\n 3    10 ms    11 ms    10 ms  10.10.10.1\n 4    25 ms    23 ms    24 ms  142.250.72.78`;
+                    }
+                    break;
+                case 'netstat -ano':
+                    output = `${userPrompt}Active Connections\n\n Proto  Local Address          Foreign Address        State           PID\n TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       988\n TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4\n TCP    192.168.1.100:49718    172.217.1.174:443      ESTABLISHED     2212\n<br><span class="text-yellow-400">NOTE: This is simulated output. Actual 'netstat' command provides local machine details.</span>`;
+                    break;
+                case 'nslookup':
+                    if (!target) {
+                        output = `${userPrompt}Default Server:  dns.google\nAddress:  8.8.8.8\n\nDNS request timed out.`;
+                    } else {
+                        output = `${userPrompt}Default Server:  dns.google\nAddress:  8.8.8.8\n\nNon-authoritative answer:\nName:    ${target}\nAddress:  93.184.216.34`;
+                    }
+                    break;
+                case 'whois':
+                    if (!target) {
+                        output = `${userPrompt}Please provide a domain name for WHOIS lookup.`;
+                    } else {
+                         output = `${userPrompt}WHOIS lookup for ${target} (simulated)\n\nDomain Name: ${target.toUpperCase()}\nRegistry Domain ID: 2280628_DOMAIN_COM-VRSN\nRegistrar WHOIS Server: whois.markmonitor.com\nCreation Date: 1995-08-14T04:00:00Z\nRegistrar: MarkMonitor Inc.\nRegistrar IANA ID: 292`;
+                    }
+                    break;
+                case 'systeminfo':
+                    output = `${userPrompt}Host Name:                 MY-PC\nOS Name:                   Microsoft Windows 11 Pro\nOS Version:                10.0.22621 N/A Build 22621\nOS Manufacturer:           Microsoft Corporation\nOS Configuration:          Member Workstation\nSystem Type:               x64-based PC\nProcessor(s):              1 Processor(s) Installed.\n                           [01]: Intel64 Family 6 Model 158 Stepping 13, GenuineIntel ~3600 Mhz\nBIOS Version:              Dell Inc. 2.21.0, 5/10/2023\nTotal Physical Memory:     16,384 MB\n<br><span class="text-yellow-400">NOTE: This is simulated output. Actual 'systeminfo' command provides detailed local system information.</span>`;
+                    break;
+                case 'route print':
+                    output = `${userPrompt}IPv4 Route Table\n===========================================================================\nActive Routes:\nNetwork Destination        Netmask          Gateway       Interface  Metric\n          0.0.0.0          0.0.0.0      192.168.1.1  192.168.1.100     25\n        127.0.0.0        255.0.0.0         On-link        127.0.0.1    331\n      192.168.1.0    255.255.255.0         On-link      192.168.1.100    281\n<br><span class="text-yellow-400">NOTE: This is simulated output. Actual 'route print' command provides the local routing table.</span>`;
+                    break;
+                case 'arp -a':
+                    output = `${userPrompt}Interface: 192.168.1.100 --- 0xb\n  Internet Address      Physical Address      Type\n  192.168.1.1           a0-bb-c2-d3-e4-f5     dynamic\n  192.168.1.255         ff-ff-ff-ff-ff-ff     static\n<br><span class="text-yellow-400">NOTE: This is a simulated output. Actual 'arp -a' command shows the local ARP cache.</span>`;
+                    break;
+                case 'ifconfig':
+                    output = `${userPrompt}eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500\n        inet 192.168.1.100  netmask 255.255.255.0  broadcast 192.168.1.255\n        inet6 fe80::a00:27ff:fe8f:1234  prefixlen 64  scopeid 0x20<link>\n        ether 08:00:27:8f:2c:0a  txqueuelen 1000  (Ethernet)\n        RX packets 12345  bytes 67890 (66.3 MiB)\n        RX errors 0  dropped 0  overruns 0  frame 0\n<br><span class="text-yellow-400">NOTE: This is a simulated 'ifconfig' command output for Linux/macOS.</span>`;
+                    break;
+                case 'traceroute':
+                    if (!target) {
+                        output = `${userPrompt}usage: traceroute [-adnruv] [-g gateway] [-i iface] [-m hops] [-p port] [-q nqueries] [-s src_addr] [-w waittime] host [data_len]`;
+                    } else {
+                        output = `${userPrompt}traceroute to ${target} (142.250.72.78), 64 hops max\n 1  gateway (192.168.1.1)  0.345 ms  0.223 ms  0.278 ms\n 2  * * *\n 3  10.10.10.1 (10.10.10.1)  10.231 ms  10.158 ms  10.199 ms\n 4  142.250.72.78 (142.250.72.78)  24.567 ms  23.987 ms  24.112 ms`;
+                    }
+                    break;
+                case 'dig':
+                    if (!target) {
+                        output = `${userPrompt}usage: dig [-b address] [-k keyfile] [-p port] [-t type] [-x addr] [-y key] [-f file] [-h] [-v] [-d] [-r] [-c class] [-q name]...`;
+                    } else {
+                        output = `${userPrompt}; <<>> DiG 9.16.1-Ubuntu <<>> ${target}\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12345\n;; QUESTION SECTION:\n;${target}. IN A\n\n;; ANSWER SECTION:\n${target}. 300 IN A 93.184.216.34\n<br><span class="text-yellow-400">NOTE: This is a simulated 'dig' command output for Linux/macOS.</span>`;
+                    }
+                    break;
+                case 'nmap -sV -p 80':
+                    if (!target) {
+                         output = `${userPrompt}nmap requires a target. Please enter an IP address or domain.`;
+                    } else {
+                         output = `${userPrompt}Starting Nmap 7.80 ( https://nmap.org )\nNmap scan report for ${target}\nHost is up (0.023s latency).\n\nPORT   STATE SERVICE VERSION\n80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/\nNmap done: 1 IP address (1 host up) scanned in 0.45 seconds`;
+                    }
+                    break;
+                case 'nmap -p 22,80,443':
+                    if (!target) {
+                        output = `${userPrompt}nmap requires a target. Please enter an IP address or domain.`;
+                    } else {
+                        output = `${userPrompt}Starting Nmap 7.80 ( https://nmap.org )\nNmap scan report for ${target}\nHost is up (0.019s latency).\n\nPORT    STATE SERVICE\n22/tcp  closed ssh\n80/tcp  open   http\n443/tcp open   https\n\nNmap done: 1 IP address (1 host up) scanned in 0.38 seconds`;
+                    }
+                    break;
+                case 'ss -tunlp':
+                    output = `${userPrompt}Netid State      Recv-Q Send-Q            Local Address:Port              Peer Address:Port             \nudp   UNCONN     0      0                 127.0.0.53%lo:53                  0.0.0.0:* \nudp   UNCONN     0      0                       0.0.0.0:68                    0.0.0.0:* \ntcp   LISTEN     0      128                     0.0.0.0:22                    0.0.0.0:* \n<br><span class="text-yellow-400">NOTE: This is a simulated 'ss' command output for Linux.</span>`;
+                    break;
+                case 'hostname':
+                    output = `${userPrompt}my-ubuntu-pc\n<br><span class="text-yellow-400">NOTE: This is a simulated 'hostname' command output.</span>`;
+                    break;
+                case 'tasklist':
+                    output = `${userPrompt}Image Name                     PID Session Name        Session#    Mem Usage\n========================= ======== ================ =========== =============\nSystem Idle Process              0 Services                   0          20 K\nSystem                           4 Services                   0       5,304 K\n<br><span class="text-yellow-400">NOTE: This is a simulated 'tasklist' command output.</span>`;
+                    break;
+                case 'ps -aux':
+                    output = `${userPrompt}USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.0 168668  6860 ?        Ss   Sep08   0:01 /sbin/init\nroot         2  0.0  0.0      0     0 ?        S    Sep08   0:00 [kthreadd]\nuser    123456  0.1  0.5 500000 25000 ?        Sl   09:00   0:02 /usr/bin/python3\n<br><span class="text-yellow-400">NOTE: This is a simulated 'ps -aux' command output.</span>`;
+                    break;
+                case 'certutil -hashfile':
+                    output = `${userPrompt}certutil -hashfile C:\\Users\\User\\important.exe SHA256\nSHA256 hash of C:\\Users\\User\\important.exe:\n4A7D18C15421295D014E71B210A83A209867540D1D20D68015D5F09B6043C0C4\nCertUtil: -hashfile command completed successfully.\n<br><span class="text-yellow-400">NOTE: This is a simulated 'certutil' command output.</span>`;
+                    break;
+                case 'where':
+                    output = `${userPrompt}where chrome.exe\nC:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n<br><span class="text-yellow-400">NOTE: This is a simulated 'where' command output.</span>`;
+                    break;
+                case 'find':
+                    output = `${userPrompt}find /home/user -name 'notes.txt'\n/home/user/documents/notes.txt\n<br><span class="text-yellow-400">NOTE: This is a simulated 'find' command output.</span>`;
+                    break;
+                case 'tcpdump':
+                    output = `${userPrompt}tcpdump -i eth0 -n -s0 -w packets.pcap\nListening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes\n09:01:05.123456 IP 192.168.1.100.51234 > 8.8.8.8.53: 12345+ A? google.com. (29)\n09:01:05.125678 IP 8.8.8.8.53 > 192.168.1.100.51234: 12345 1/0/0 A 142.250.72.78 (45)\n09:01:06.789012 IP 192.168.1.100.51235 > 172.217.1.174.443: Flags [S], seq 12345, win 65535, options [mss 1460], length 0\n<br><span class="text-yellow-400">NOTE: This is a simulated 'tcpdump' command output for Linux/macOS.</span>`;
+                    break;
+                default:
+                    output = `${userPrompt}Unknown command.`;
+            }
+            outputDiv.innerHTML = output;
+        };
+
+        ipconfigBtn.addEventListener('click', () => simulateCommand('ipconfig', ''));
+        pingBtn.addEventListener('click', () => simulateCommand('ping', targetInput.value));
+        tracertBtn.addEventListener('click', () => simulateCommand('tracert', targetInput.value));
+        routePrintBtn.addEventListener('click', () => simulateCommand('route print', ''));
+        arpBtn.addEventListener('click', () => simulateCommand('arp -a', ''));
+        netstatAnoBtn.addEventListener('click', () => simulateCommand('netstat -ano', ''));
+        ifconfigBtn.addEventListener('click', () => simulateCommand('ifconfig', ''));
+        tracerouteBtn.addEventListener('click', () => simulateCommand('traceroute', targetInput.value));
+        ssBtn.addEventListener('click', () => simulateCommand('ss -tunlp', ''));
+        hostnameBtn.addEventListener('click', () => simulateCommand('hostname', ''));
+        nslookupBtn.addEventListener('click', () => simulateCommand('nslookup', targetInput.value));
+        whoisBtn.addEventListener('click', () => simulateCommand('whois', targetInput.value));
+        digBtn.addEventListener('click', () => simulateCommand('dig', targetInput.value));
+        nmapSVSBtn.addEventListener('click', () => simulateCommand('nmap -sV -p 80', targetInput.value));
+        nmapScanBtn.addEventListener('click', () => simulateCommand('nmap -p 22,80,443', targetInput.value));
+        systeminfoBtn.addEventListener('click', () => simulateCommand('systeminfo', ''));
+        tasklistBtn.addEventListener('click', () => simulateCommand('tasklist', ''));
+        psBtn.addEventListener('click', () => simulateCommand('ps -aux', ''));
+        tcpdumpBtn.addEventListener('click', () => simulateCommand('tcpdump', ''));
+        certutilBtn.addEventListener('click', () => simulateCommand('certutil -hashfile', ''));
+        whereBtn.addEventListener('click', () => simulateCommand('where', ''));
+        findBtn.addEventListener('click', () => simulateCommand('find', ''));
+        clearBtn.addEventListener('click', () => outputDiv.innerHTML = '<span class="text-green-400">C:\\Users\\User></span> Awaiting command...');
+    </script>
+</body>
+</html>
