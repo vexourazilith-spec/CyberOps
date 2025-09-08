@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zilith's Cybersecurity Toolkit</title>
+    <title>CyberOps by Zilith</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -72,6 +72,15 @@
         80% { text-shadow: 0 0 5px #00ffc8, 0 0 10px #00ffc8; }
         100% { text-shadow: 0 0 5px #00ffc8, 0 0 10px #00ffc8; }
       }
+      
+      .pulse-animation {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
     </style>
 </head>
 
@@ -79,7 +88,8 @@
 
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <header class="text-center mb-12">
-            <h1 class="text-5xl font-extrabold mb-4 animated-hacker-text">CyberOps by Zilith</h1>
+            <h1 class="text-5xl font-extrabold mb-2 animated-hacker-text">CyberOps by Zilith</h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400">Your safe and interactive command-line toolkit.</p>
         </header>
 
         <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
@@ -96,48 +106,48 @@
                 <h2 class="text-xl font-bold mb-4">Network Connectivity & Host Info</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <!-- Windows Tools -->
-                    <button id="ipconfigBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">ipconfig <span class="os-tag">Win</span></button>
-                    <button id="tracertBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">tracert <span class="os-tag">Win</span></button>
-                    <button id="routePrintBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">route print <span class="os-tag">Win</span></button>
-                    <button id="arpBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">arp -a <span class="os-tag">Win</span></button>
-                    <button id="netstatAnoBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">netstat -ano <span class="os-tag">Win</span></button>
+                    <button id="ipconfigBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🌐 ipconfig <span class="os-tag">Win</span></button>
+                    <button id="tracertBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🛣️ tracert <span class="os-tag">Win</span></button>
+                    <button id="routePrintBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🗺️ route print <span class="os-tag">Win</span></button>
+                    <button id="arpBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">💻 arp -a <span class="os-tag">Win</span></button>
+                    <button id="netstatAnoBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">📈 netstat -ano <span class="os-tag">Win</span></button>
                     
                     <!-- Universal/Linux/Mac Tools -->
-                    <button id="pingBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">ping <span class="os-tag">All</span></button>
-                    <button id="hostnameBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">hostname <span class="os-tag">All</span></button>
-                    <button id="ifconfigBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">ifconfig <span class="os-tag">L/M</span></button>
-                    <button id="tracerouteBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">traceroute <span class="os-tag">L/M</span></button>
-                    <button id="ssBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">ss -tunlp <span class="os-tag">L</span></button>
+                    <button id="pingBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">📡 ping <span class="os-tag">All</span></button>
+                    <button id="hostnameBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🖥️ hostname <span class="os-tag">All</span></button>
+                    <button id="ifconfigBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">🌐 ifconfig <span class="os-tag">L/M</span></button>
+                    <button id="tracerouteBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">🗺️ traceroute <span class="os-tag">L/M</span></button>
+                    <button id="ssBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">📈 ss -tunlp <span class="os-tag">L</span></button>
                 </div>
             </div>
 
             <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
                 <h2 class="text-xl font-bold mb-4">Domain & DNS Resolution</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <button id="nslookupBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">nslookup <span class="os-tag">All</span></button>
-                    <button id="whoisBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">whois <span class="os-tag">All</span></button>
-                    <button id="digBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">dig <span class="os-tag">L/M</span></button>
+                    <button id="nslookupBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🔎 nslookup <span class="os-tag">All</span></button>
+                    <button id="whoisBtn" class="px-4 py-2 rounded-full bg-primary text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">📄 whois <span class="os-tag">All</span></button>
+                    <button id="digBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">🕵️‍♂️ dig <span class="os-tag">L/M</span></button>
                 </div>
             </div>
 
             <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
                 <h2 class="text-xl font-bold mb-4">Network Scanning & System Info</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <button id="nmapSVSBtn" class="px-4 py-2 rounded-full bg-purple-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-purple-700">nmap -sV -p 80 <span class="os-tag">L/M</span></button>
-                    <button id="nmapScanBtn" class="px-4 py-2 rounded-full bg-purple-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-purple-700">nmap -p 22,80,443 <span class="os-tag">L/M</span></button>
-                    <button id="systeminfoBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">systeminfo <span class="os-tag">Win</span></button>
-                    <button id="tasklistBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">tasklist <span class="os-tag">Win</span></button>
-                    <button id="psBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">ps -aux <span class="os-tag">L/M</span></button>
+                    <button id="nmapSVSBtn" class="px-4 py-2 rounded-full bg-purple-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-purple-700">🔍 nmap -sV -p 80 <span class="os-tag">L/M</span></button>
+                    <button id="nmapScanBtn" class="px-4 py-2 rounded-full bg-purple-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-purple-700">🔍 nmap -p 22,80,443 <span class="os-tag">L/M</span></button>
+                    <button id="systeminfoBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🖥️ systeminfo <span class="os-tag">Win</span></button>
+                    <button id="tasklistBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">📋 tasklist <span class="os-tag">Win</span></button>
+                    <button id="psBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">📋 ps -aux <span class="os-tag">L/M</span></button>
                 </div>
             </div>
 
             <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg mb-8">
                 <h2 class="text-xl font-bold mb-4">File & Process Analysis</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <button id="tcpdumpBtn" class="px-4 py-2 rounded-full bg-green-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-green-700">tcpdump <span class="os-tag">L/M</span></button>
-                    <button id="certutilBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">certutil -hashfile <span class="os-tag">Win</span></button>
-                    <button id="whereBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">where <span class="os-tag">Win</span></button>
-                    <button id="findBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">find <span class="os-tag">L/M</span></button>
+                    <button id="tcpdumpBtn" class="px-4 py-2 rounded-full bg-green-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-green-700">📦 tcpdump <span class="os-tag">L/M</span></button>
+                    <button id="certutilBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">🔒 certutil -hashfile <span class="os-tag">Win</span></button>
+                    <button id="whereBtn" class="px-4 py-2 rounded-full bg-blue-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-blue-700">📂 where <span class="os-tag">Win</span></button>
+                    <button id="findBtn" class="px-4 py-2 rounded-full bg-yellow-600 text-white font-bold transition-transform transform hover:scale-105 hover:bg-yellow-700">📂 find <span class="os-tag">L/M</span></button>
                 </div>
             </div>
 
@@ -145,7 +155,7 @@
             <div class="tool-card bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg">
                 <h2 class="text-2xl font-bold mb-2 flex justify-between items-center">
                     Command Output
-                    <button id="clearBtn" class="px-4 py-2 rounded-full bg-red-500 text-white text-sm font-bold transition-transform transform hover:scale-105 hover:bg-red-700">Clear</button>
+                    <button id="clearBtn" class="px-4 py-2 rounded-full bg-red-500 text-white text-sm font-bold transition-transform transform hover:scale-105 hover:bg-red-700 pulse-animation">Clear</button>
                 </h2>
                 <div id="output" class="terminal-mockup">
                     <span class="text-green-400">C:\Users\User></span> Awaiting command...
